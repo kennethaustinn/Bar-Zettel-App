@@ -8,7 +8,7 @@ import android.view.View
 import androidx.fragment.app.DialogFragment
 import de.htw_berlin.barzettel.databinding.DialogAddNewCostumerBinding
 
-class AddNewCostumerDialog(val onOK: () -> (Unit)) : DialogFragment() {
+class AddNewCostumerDialog(val onOK: (String) -> (Unit)) : DialogFragment() {
 
     var binding: DialogAddNewCostumerBinding? = null
 
@@ -18,7 +18,7 @@ class AddNewCostumerDialog(val onOK: () -> (Unit)) : DialogFragment() {
         binding = DialogAddNewCostumerBinding.bind(view)
         binding?.buttonOKDialogNewCostumer?.setOnClickListener {
             Log.d(CostumerOverviewViewModel.TAG, "Dialog OK clicked")
-            onOK()
+            onOK(binding?.dialogNameCostumerNew?.text.toString())
             this.dialog?.cancel()
         }
         binding?.buttonCancelDialogNewCoustumer?.setOnClickListener {

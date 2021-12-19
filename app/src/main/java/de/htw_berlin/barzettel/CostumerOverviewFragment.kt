@@ -14,6 +14,7 @@ class CostumerOverviewFragment : Fragment() {
 
     internal lateinit var binding: FragmentCostumerOverviewBinding
     internal lateinit var viewModel : CostumerOverviewViewModel
+    internal lateinit var viewModelFactory: CostumerOverviewViewModelFactory
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -21,9 +22,11 @@ class CostumerOverviewFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_costumer_overview, container, false)
-        viewModel = ViewModelProvider(this).get(CostumerOverviewViewModel::class.java)
+        viewModelFactory = CostumerOverviewViewModelFactory(requireContext())
+        viewModel = ViewModelProvider(this, viewModelFactory).get(CostumerOverviewViewModel::class.java)
         binding.costumerOverviewViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
 
         viewModel.isDialogVisible.observe(viewLifecycleOwner, {
             if(it == true){
