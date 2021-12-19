@@ -6,15 +6,14 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import androidx.sqlite.db.SupportSQLiteDatabase
-import de.dalmagrov.barzettel.Kunde
-import kotlinx.coroutines.CoroutineScope
+import de.dalmagrov.barzettel.Costumer
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Kunde::class), version = 1)
+@Database(entities = arrayOf(Costumer::class), version = 1)
 @TypeConverters(ConverterDatabase::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun kundenDao(): KundenDao
+    abstract fun kundenDao(): CostumerDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

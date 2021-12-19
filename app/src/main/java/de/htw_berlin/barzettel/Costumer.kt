@@ -5,7 +5,7 @@ import java.util.*
 
 
 @Entity
-data class Kunde(var name : String){
+data class Costumer(var name : String){
     @PrimaryKey(autoGenerate = true) var id : Int = 0
     var price : Int = 0
     var date: Calendar
@@ -14,9 +14,9 @@ data class Kunde(var name : String){
 
     init {
         val now = Calendar.getInstance()
-        if (now.get(Calendar.HOUR) < 13){
+        if (now.get(Calendar.HOUR_OF_DAY) < 13){
             date = Calendar.getInstance()
-            date.add(Calendar.DATE, -1)
+            date.add(Calendar.DAY_OF_MONTH, -1)
         }
         else{
             date = Calendar.getInstance()

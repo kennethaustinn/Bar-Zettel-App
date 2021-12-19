@@ -5,8 +5,9 @@
       <map>
         <entry key="..\:/Users/almag/AndroidStudioProjects/BarZettel2/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/almag/AndroidStudioProjects/BarZettel2/app/src/main/res/layout/dialog_add_new_costumer.xml" value="0.2" />
-        <entry key="..\:/Users/almag/AndroidStudioProjects/BarZettel2/app/src/main/res/layout/fragment_costumer_overview.xml" value="0.25416666666666665" />
+        <entry key="..\:/Users/almag/AndroidStudioProjects/BarZettel2/app/src/main/res/layout/fragment_costumer_overview.xml" value="0.176" />
         <entry key="..\:/Users/almag/AndroidStudioProjects/BarZettel2/app/src/main/res/layout/fragment_custumer_overview.xml" value="0.24010416666666667" />
+        <entry key="..\:/Users/almag/AndroidStudioProjects/BarZettel2/app/src/main/res/layout/row_costumer_overview.xml" value="0.22056159420289856" />
       </map>
     </option>
   </component>

@@ -1,29 +1,22 @@
 package de.htw_berlin.barzettel
 
-import android.app.Application
-import android.app.Dialog
 import android.content.Context
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import androidx.fragment.app.findFragment
 import androidx.lifecycle.*
-import androidx.navigation.findNavController
-import de.dalmagrov.barzettel.Kunde
+import de.dalmagrov.barzettel.Costumer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class CostumerOverviewViewModel(private val context: Context) : ViewModel() {
 
-    val repository: KundenRepository
+    val repository: CostumerRepository
     val isDialogVisible = MutableLiveData<Boolean>()
-    val kundenToday : LiveData<List<Kunde>>
+    val kundenToday : LiveData<List<Costumer>>
 
     init {
-        repository = KundenRepository(context)
+        repository = CostumerRepository(context)
         kundenToday = repository.allKundenToday.asLiveData()
-
     }
 
     companion object{
@@ -36,10 +29,18 @@ class CostumerOverviewViewModel(private val context: Context) : ViewModel() {
     }
 
     fun onOkDialogClicked(description : String){
-        val kunde = Kunde(description)
+        val kunde = Costumer(description)
         viewModelScope.launch(Dispatchers.IO) {
             repository.insert(kunde)
         }
+    }
+
+    fun onListItemClicked(position : Int){
+
+    }
+
+    fun onListItemLongClicked(position : Int) {
+
     }
 
 }
