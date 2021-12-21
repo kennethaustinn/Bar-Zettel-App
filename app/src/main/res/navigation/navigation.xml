@@ -7,5 +7,17 @@
     <fragment
         android:id="@+id/costumerOverviewFragment"
         android:name="de.htw_berlin.barzettel.CostumerOverviewFragment"
-        android:label="CostumerOverviewFragment" />
+        android:label="CostumerOverviewFragment" >
+        <action
+            android:id="@+id/action_costumerOverviewFragment_to_costumerDetailFragment"
+            app:destination="@id/costumerDetailFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/costumerDetailFragment"
+        android:name="de.htw_berlin.barzettel.CostumerDetailFragment"
+        android:label="CostumerDetailFragment" >
+        <argument
+            android:name="costumerId"
+            app:argType="integer" />
+    </fragment>
 </navigation>
