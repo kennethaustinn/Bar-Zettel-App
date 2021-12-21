@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import de.dalmagrov.barzettel.Costumer
 
-class CostumerListAdapter(val onLongClick: (pos : Int) -> Unit, val onClick: (pos: Int) -> Unit) : ListAdapter<Costumer, CostumerListAdapter.MyViewHolder>(
+class CostumerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, Int) -> Unit) : ListAdapter<Costumer, CostumerListAdapter.MyViewHolder>(
     CostumerComparator()
 ) {
 
@@ -57,7 +57,7 @@ class CostumerListAdapter(val onLongClick: (pos : Int) -> Unit, val onClick: (po
 
         holder.itemView.setOnClickListener {
             Log.d("List Adapter", "Item clicked " + position)
-            onClick(position)
+            onClick(it, position)
         }
         holder.itemView.setOnLongClickListener {
             Log.d("First Fragment", "Long click item " + position)

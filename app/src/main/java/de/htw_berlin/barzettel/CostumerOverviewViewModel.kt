@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
+import androidx.navigation.findNavController
 import de.dalmagrov.barzettel.Costumer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -35,8 +36,10 @@ class CostumerOverviewViewModel(private val context: Context) : ViewModel() {
         }
     }
 
-    fun onListItemClicked(position : Int){
-
+    fun onListItemClicked(view: View, position : Int){
+        val action = CostumerOverviewFragmentDirections.actionCostumerOverviewFragmentToCostumerDetailFragment(position)
+        isDialogVisible.value = false
+        view.findNavController().navigate(action)
     }
 
     fun onListItemLongClicked(position : Int) {
