@@ -1,4 +1,4 @@
-package de.dalmagrov.barzettel
+package de.htw_berlin.barzettel
 
 import androidx.room.*
 import java.util.*

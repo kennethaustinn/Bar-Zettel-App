@@ -1,7 +1,6 @@
 package de.htw_berlin.barzettel
 
 import androidx.room.*
-import de.dalmagrov.barzettel.Costumer
 import kotlinx.coroutines.flow.Flow
 
 @Dao

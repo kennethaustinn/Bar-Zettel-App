@@ -1,7 +1,6 @@
 package de.htw_berlin.barzettel
 
 import android.content.Context
-import de.dalmagrov.barzettel.Costumer
 import kotlinx.coroutines.flow.Flow
 import java.text.SimpleDateFormat
 import java.util.*

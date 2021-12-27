@@ -1,59 +1,41 @@
 package de.htw_berlin.barzettel
 
-import android.content.Context
-import android.graphics.Color
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import androidx.core.content.ContextCompat
-import androidx.core.os.bundleOf
-import androidx.navigation.findNavController
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import de.dalmagrov.barzettel.Costumer
+import de.htw_berlin.barzettel.databinding.RowCostumerOverviewBinding
 
-class CostumerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, Int) -> Unit) : ListAdapter<Costumer, CostumerListAdapter.MyViewHolder>(
+class CostumerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, Int) -> Unit) : ListAdapter<Costumer, CostumerListAdapter.ViewHolder>(
     CostumerComparator()
 ) {
 
 
-    class MyViewHolder(view : View) : RecyclerView.ViewHolder(view) {
-        val textName : TextView
-        val textPrice : TextView
-        val context : Context
+    class ViewHolder private constructor(val binding: RowCostumerOverviewBinding) : RecyclerView.ViewHolder(binding.root){
 
-        init {
-            textName = view.findViewById(R.id.listName)
-            textPrice = view.findViewById(R.id.listPrice)
-            context = view.context
+        fun bind(item: Costumer) {
+            binding.kunde = item
         }
 
         companion object {
-            fun create(parent: ViewGroup): MyViewHolder {
-                val view: View = LayoutInflater.from(parent.context)
-                    .inflate(R.layout.row_costumer_overview, parent, false)
-                return MyViewHolder(view)
+            fun from(parent: ViewGroup): ViewHolder {
+                val layoutInflater = LayoutInflater.from(parent.context)
+                val binding = RowCostumerOverviewBinding.inflate(layoutInflater, parent, false)
+                return ViewHolder(binding)
             }
         }
-
-
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-        return MyViewHolder.create(parent)
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
+        return ViewHolder.from(parent)
     }
 
-    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val kunde = getItem(position)
-        holder.textName.text = kunde.name
-        val dprice = kunde.price/100.0
-        val df = java.text.DecimalFormat("#0.00")
-        holder.textPrice.text = df.format(dprice) + " €"
-        holder.textPrice.setTextColor(Color.RED)
-        holder.textName.setTextColor(Color.RED)
+        holder.bind(kunde)
 
         holder.itemView.setOnClickListener {
             Log.d("List Adapter", "Item clicked " + position)
@@ -64,8 +46,6 @@ class CostumerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, In
             onLongClick(position)
             true
         }
-
-
 
     }
     class CostumerComparator : DiffUtil.ItemCallback<Costumer>() {

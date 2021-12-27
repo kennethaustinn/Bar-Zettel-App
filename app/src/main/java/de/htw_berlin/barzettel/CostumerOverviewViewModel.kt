@@ -5,7 +5,6 @@ import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import androidx.navigation.findNavController
-import de.dalmagrov.barzettel.Costumer
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
