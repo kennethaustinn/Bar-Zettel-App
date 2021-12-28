@@ -35,6 +35,12 @@ class CostumerDetailFragment : Fragment() {
         binding.costumerListView.adapter = adapter
         binding.costumerListView.layoutManager = LinearLayoutManager(context)
 
+        binding.textPrice.setOnLongClickListener {
+            val dialog = BillDialog(viewModel)
+            dialog.show(parentFragmentManager, "Bill Dialog")
+            true
+        }
+
         return binding.root
     }
 }

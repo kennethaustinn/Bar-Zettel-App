@@ -17,6 +17,9 @@ interface CostumerDao {
     @Query("SELECT * FROM Costumer WHERE id = :id")
     fun getCostumer(id: Int) : Costumer
 
+    @Query("SELECT date, SUM(price) as sum FROM Costumer WHERE date LIKE '%' || :datum || '%' GROUP BY date")
+    fun getMonth(datum : String) : List<SalesOfDay>
+
     @Insert
     fun insertAll(vararg costumer: Costumer)
 

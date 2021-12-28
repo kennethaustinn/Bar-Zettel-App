@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_costumerOverviewFragment_to_costumerDetailFragment"
             app:destination="@id/costumerDetailFragment" />
+        <action
+            android:id="@+id/action_costumerOverviewFragment_to_salesOverviewFragment"
+            app:destination="@id/salesOverviewFragment" />
     </fragment>
     <fragment
         android:id="@+id/costumerDetailFragment"
@@ -20,4 +23,8 @@
             android:name="costumerId"
             app:argType="integer" />
     </fragment>
+    <fragment
+        android:id="@+id/salesOverviewFragment"
+        android:name="de.htw_berlin.barzettel.SalesOverviewFragment"
+        android:label="SalesOverviewFragment" />
 </navigation>

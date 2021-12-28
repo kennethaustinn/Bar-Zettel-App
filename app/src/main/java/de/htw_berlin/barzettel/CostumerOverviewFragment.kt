@@ -1,13 +1,11 @@
 package de.htw_berlin.barzettel
 
 import android.os.Bundle
-import android.util.Log
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.htw_berlin.barzettel.databinding.FragmentCostumerOverviewBinding
 
@@ -24,6 +22,7 @@ class CostumerOverviewFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_costumer_overview, container, false)
+        setHasOptionsMenu(true)
 
         viewModelFactory = CostumerOverviewViewModelFactory(requireContext())
         viewModel = ViewModelProvider(this, viewModelFactory).get(CostumerOverviewViewModel::class.java)
@@ -46,6 +45,20 @@ class CostumerOverviewFragment : Fragment() {
         }
 
         return binding.root
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_costumer_overview, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.action_sales_overview -> {
+                findNavController().navigate(R.id.action_costumerOverviewFragment_to_salesOverviewFragment)
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
     }
 
 }

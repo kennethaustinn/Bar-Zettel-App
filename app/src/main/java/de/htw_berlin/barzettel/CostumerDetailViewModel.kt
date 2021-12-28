@@ -79,4 +79,18 @@ class CostumerDetailViewModel(private val context: Context, val costumerId : Int
         }
         costumer.price = totalPrice
     }
+
+    fun createTextRechnung() : String{
+        var res = ""
+        costumer.artikel.forEach { id, quantity ->
+            val artikel = articles.find { it.id==id }
+            if (artikel != null){
+                val dprice = (artikel.price * quantity)/100.0
+                val df = java.text.DecimalFormat("#0.00")
+                val a = quantity.toString() + "x " + artikel.description + " " + df.format(dprice) + " €\n"
+                res = res + a
+            }
+        }
+        return res
+    }
 }

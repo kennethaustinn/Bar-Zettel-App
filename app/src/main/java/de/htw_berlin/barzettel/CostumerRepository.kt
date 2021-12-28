@@ -27,6 +27,17 @@ class CostumerRepository(val context: Context) {
         return dao.getCostumer(id)
     }
 
+    suspend fun getSalesOfMonth(date: Calendar) : List<SalesOfDay>{
+        val month = date.get(Calendar.MONTH) + 1
+        var res = dao.getMonth(month.toString())
+        res = res.filter {
+            it.date.get(Calendar.MONTH) == date.get(Calendar.MONTH) &&
+                    it.date.get(Calendar.YEAR) == date.get(Calendar.YEAR)
+        }
+        res = res.sortedBy { it.date }
+        return res
+    }
+
     suspend fun updateCostumer(costumer: Costumer){
         dao.update(costumer)
     }
