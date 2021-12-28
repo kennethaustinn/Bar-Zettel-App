@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import de.htw_berlin.barzettel.databinding.FragmentCostumerDetailBinding
 
 
@@ -15,6 +16,7 @@ class CostumerDetailFragment : Fragment() {
     internal lateinit var binding: FragmentCostumerDetailBinding
     internal lateinit var viewModelFactory: CostumerDetailViewModelFactory
     internal lateinit var viewModel : CostumerDetailViewModel
+    internal lateinit var adapter: ArticleListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -27,6 +29,11 @@ class CostumerDetailFragment : Fragment() {
 
         binding.costumerDetailViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
+
+        adapter = ArticleListAdapter(viewModel::onMinus, viewModel::onPlus, viewModel.costumer())
+        adapter.submitList(CostumerDetailViewModel.articles)
+        binding.costumerListView.adapter = adapter
+        binding.costumerListView.layoutManager = LinearLayoutManager(context)
 
         return binding.root
     }

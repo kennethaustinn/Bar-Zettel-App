@@ -1,0 +1,103 @@
+[
+  {
+    "id": 0,
+    "description": "Bier 0,2",
+    "price": 160
+  },
+  {
+    "id": 1,
+    "description": "Bier 0,3",
+    "price": 200
+  },
+  {
+    "id": 2,
+    "description": "Bier 0,5",
+    "price": 380
+  },
+  {
+    "id": 3,
+    "description": "Flaschen Bier",
+    "price": 220
+  },
+  {
+    "id": 4,
+    "description": "WB",
+    "price": 390
+  },
+  {
+    "id": 5,
+    "description": "Mojito",
+    "price": 650
+  },
+  {
+    "id": 6,
+    "description": "Captain Cola",
+    "price": 600
+  },
+  {
+    "id": 7,
+    "description": "BC",
+    "price": 600
+  },
+  {
+    "id": 8,
+    "description": "COWO",
+    "price": 600
+  },
+  {
+    "id": 9,
+    "description": "Jack Cola",
+    "price": 700
+  },
+  {
+    "id": 10,
+    "description": "Gin Tonic",
+    "price": 700
+  },
+  {
+    "id": 11,
+    "description": "Softdrink",
+    "price": 200
+  },
+  {
+    "id": 12,
+    "description": "Wein",
+    "price": 350
+  },
+  {
+    "id": 13,
+    "description": "Sommerwein",
+    "price": 320
+  },
+  {
+    "id": 14,
+    "description": "Wurst mit Brot",
+    "price": 450
+  },
+  {
+    "id": 15,
+    "description": "Wurst mit KSalat",
+    "price": 700
+  },
+  {
+    "id": 16,
+    "description": "0,50 €",
+    "price": 50
+  },
+  {
+    "id": 17,
+    "description": "1,00 €",
+    "price": 100
+  },
+  {
+    "id": 18,
+    "description": "2,00 €",
+    "price": 200
+  },
+  {
+    "id": 19,
+    "description": "5,00 €",
+    "price": 500
+  }
+
+]

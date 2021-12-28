@@ -16,7 +16,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:text="TextView"
+            android:text="@{costumerDetailViewModel.costumer().name}"
             android:textSize="48sp"
             android:textStyle="italic"
             app:layout_constraintEnd_toEndOf="parent"
@@ -30,16 +30,16 @@
             android:layout_marginTop="32dp"
             android:clickable="true"
             android:longClickable="true"
-            android:text="TextView"
             android:textColor="@color/black"
             android:textSize="48sp"
             android:textStyle="bold"
+            app:priceDetail="@{costumerDetailViewModel.costumer().price}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/textName" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/kundenListView"
+            android:id="@+id/costumerListView"
             android:layout_width="0dp"
             android:layout_height="0dp"
             android:layout_marginStart="1dp"

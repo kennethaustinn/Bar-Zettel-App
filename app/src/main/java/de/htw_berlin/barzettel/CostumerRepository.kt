@@ -2,6 +2,9 @@ package de.htw_berlin.barzettel
 
 import android.content.Context
 import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -18,6 +21,14 @@ class CostumerRepository(val context: Context) {
 
     suspend fun insert(costumer: Costumer) {
         dao.insertAll(costumer)
+    }
+
+    suspend fun getCostumer(id: Int) : Costumer{
+        return dao.getCostumer(id)
+    }
+
+    suspend fun updateCostumer(costumer: Costumer){
+        dao.update(costumer)
     }
 
     private fun getDate() : String{

@@ -35,8 +35,8 @@ class CostumerOverviewViewModel(private val context: Context) : ViewModel() {
         }
     }
 
-    fun onListItemClicked(view: View, position : Int){
-        val action = CostumerOverviewFragmentDirections.actionCostumerOverviewFragmentToCostumerDetailFragment(position)
+    fun onListItemClicked(view: View, costumerId : Int){
+        val action = CostumerOverviewFragmentDirections.actionCostumerOverviewFragmentToCostumerDetailFragment(costumerId)
         isDialogVisible.value = false
         view.findNavController().navigate(action)
     }

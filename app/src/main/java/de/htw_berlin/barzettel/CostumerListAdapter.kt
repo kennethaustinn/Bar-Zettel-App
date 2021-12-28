@@ -9,9 +9,8 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import de.htw_berlin.barzettel.databinding.RowCostumerOverviewBinding
 
-class CostumerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, Int) -> Unit) : ListAdapter<Costumer, CostumerListAdapter.ViewHolder>(
-    CostumerComparator()
-) {
+class CostumerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, Int) -> Unit) :
+    ListAdapter<Costumer, CostumerListAdapter.ViewHolder>(CostumerComparator()) {
 
 
     class ViewHolder private constructor(val binding: RowCostumerOverviewBinding) : RecyclerView.ViewHolder(binding.root){
@@ -38,8 +37,8 @@ class CostumerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, In
         holder.bind(kunde)
 
         holder.itemView.setOnClickListener {
-            Log.d("List Adapter", "Item clicked " + position)
-            onClick(it, position)
+            Log.d("List Adapter", "Item clicked " + kunde.id)
+            onClick(it, kunde.id)
         }
         holder.itemView.setOnLongClickListener {
             Log.d("First Fragment", "Long click item " + position)
