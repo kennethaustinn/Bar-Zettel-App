@@ -3,7 +3,6 @@ package de.htw_berlin.barzettel
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.DialogFragment
 import de.htw_berlin.barzettel.databinding.DialogBillBinding
 

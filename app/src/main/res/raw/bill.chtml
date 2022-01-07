@@ -1,0 +1,61 @@
+<html>
+    <head>
+        <title>Rechnung</title>
+        <style>
+            page{
+                width: 21cm;
+                height: 29.7cm;
+                background: white;
+                display: block;
+                margin: 0 auto;
+                margin-bottom: 0.5cm;
+            }
+
+            header{
+                align-content: center;
+                text-align: center;
+                font-size: 3em;
+            }
+
+            ul{
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                margin-top: 15mm;
+            }
+
+            .listDatum{
+                padding: 0;
+                margin: 0;
+                padding-bottom: 2mm;
+                padding-left: 10mm;
+                padding-right: 10mm;
+            }
+
+            .listPreis{
+                float: right;
+            }
+
+            #totalSumme{
+                float: right;
+                padding: 0;
+                margin: 0;
+                padding-right: 10mm;
+            }
+        </style>
+    </head>
+    <body>
+        <page>
+            <header>Umsatz {$monat} {$jahr}</header>
+                <main>
+                    <ul>
+                        {% loop in $items as $x %}
+                        <li><p class="listDatum">{$x.item_date_string} <span class="listPreis">{$x.item_price}</span></p></li>
+                        {% endloop %}
+                    </ul>
+                    <hr>
+                    <p id="totalSumme">Total: {$total}</p>
+                </main>
+        </page>
+    </body>
+</html>
