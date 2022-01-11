@@ -6,8 +6,8 @@ import java.text.SimpleDateFormat
 import java.util.*
 
 @BindingAdapter("price")
-fun TextView.setLabel(costumer: Costumer){
-    val dprice = costumer.price/100.0
+fun TextView.setLabel(customer: Customer){
+    val dprice = customer.price/100.0
     val df = java.text.DecimalFormat("#0.00")
     text = "${df.format(dprice)} €"
 }

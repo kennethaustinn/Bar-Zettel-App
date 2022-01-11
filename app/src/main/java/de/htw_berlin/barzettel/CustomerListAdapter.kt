@@ -9,13 +9,13 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import de.htw_berlin.barzettel.databinding.RowCostumerOverviewBinding
 
-class CostumerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, Int) -> Unit) :
-    ListAdapter<Costumer, CostumerListAdapter.ViewHolder>(CostumerComparator()) {
+class CustomerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, Int) -> Unit) :
+    ListAdapter<Customer, CustomerListAdapter.ViewHolder>(CostumerComparator()) {
 
 
     class ViewHolder private constructor(val binding: RowCostumerOverviewBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: Costumer) {
+        fun bind(item: Customer) {
             binding.kunde = item
         }
 
@@ -47,12 +47,12 @@ class CostumerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, In
         }
 
     }
-    class CostumerComparator : DiffUtil.ItemCallback<Costumer>() {
-        override fun areItemsTheSame(oldItem: Costumer, newItem: Costumer): Boolean {
+    class CostumerComparator : DiffUtil.ItemCallback<Customer>() {
+        override fun areItemsTheSame(oldItem: Customer, newItem: Customer): Boolean {
             return oldItem === newItem
         }
 
-        override fun areContentsTheSame(oldItem: Costumer, newItem: Costumer): Boolean {
+        override fun areContentsTheSame(oldItem: Customer, newItem: Customer): Boolean {
             return oldItem.id == newItem.id
         }
     }

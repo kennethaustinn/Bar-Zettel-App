@@ -9,12 +9,12 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import de.htw_berlin.barzettel.databinding.FragmentCostumerOverviewBinding
 
-class CostumerOverviewFragment : Fragment() {
+class CustomerOverviewFragment : Fragment() {
 
     internal lateinit var binding: FragmentCostumerOverviewBinding
-    internal lateinit var viewModel : CostumerOverviewViewModel
-    internal lateinit var viewModelFactory: CostumerOverviewViewModelFactory
-    internal lateinit var adapter: CostumerListAdapter
+    internal lateinit var viewModel : CustomerOverviewViewModel
+    internal lateinit var viewModelFactory: CustomerOverviewViewModelFactory
+    internal lateinit var adapter: CustomerListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -24,8 +24,8 @@ class CostumerOverviewFragment : Fragment() {
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_costumer_overview, container, false)
         setHasOptionsMenu(true)
 
-        viewModelFactory = CostumerOverviewViewModelFactory(requireContext())
-        viewModel = ViewModelProvider(this, viewModelFactory).get(CostumerOverviewViewModel::class.java)
+        viewModelFactory = CustomerOverviewViewModelFactory(requireContext())
+        viewModel = ViewModelProvider(this, viewModelFactory).get(CustomerOverviewViewModel::class.java)
         binding.costumerOverviewViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
@@ -37,7 +37,7 @@ class CostumerOverviewFragment : Fragment() {
             }
         })
 
-        adapter = CostumerListAdapter(viewModel::onListItemLongClicked, viewModel::onListItemClicked)
+        adapter = CustomerListAdapter(viewModel::onListItemLongClicked, viewModel::onListItemClicked)
         binding.listCostumerOverview.adapter = adapter
         binding.listCostumerOverview.layoutManager = LinearLayoutManager(context)
         viewModel.kundenToday.observe(viewLifecycleOwner) { costumers ->

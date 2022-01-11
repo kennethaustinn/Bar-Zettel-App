@@ -6,7 +6,7 @@ import android.os.Bundle
 import androidx.fragment.app.DialogFragment
 import de.htw_berlin.barzettel.databinding.DialogBillBinding
 
-class BillDialog(val viewModel: CostumerDetailViewModel) : DialogFragment() {
+class BillDialog(val viewModel: CustomerDetailViewModel) : DialogFragment() {
 
     var binding: DialogBillBinding? = null
 

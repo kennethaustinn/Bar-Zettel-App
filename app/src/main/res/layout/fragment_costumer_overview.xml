@@ -5,7 +5,7 @@
     <data>
         <variable
             name="costumerOverviewViewModel"
-            type="de.htw_berlin.barzettel.CostumerOverviewViewModel" />
+            type="de.htw_berlin.barzettel.CustomerOverviewViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

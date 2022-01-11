@@ -8,14 +8,14 @@ import androidx.navigation.findNavController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
-class CostumerOverviewViewModel(private val context: Context) : ViewModel() {
+class CustomerOverviewViewModel(private val context: Context) : ViewModel() {
 
-    val repository: CostumerRepository
+    val repository: CustomerRepository
     val isDialogVisible = MutableLiveData<Boolean>()
-    val kundenToday : LiveData<List<Costumer>>
+    val kundenToday : LiveData<List<Customer>>
 
     init {
-        repository = CostumerRepository(context)
+        repository = CustomerRepository(context)
         kundenToday = repository.allKundenToday.asLiveData()
     }
 
@@ -29,14 +29,14 @@ class CostumerOverviewViewModel(private val context: Context) : ViewModel() {
     }
 
     fun onOkDialogClicked(description : String){
-        val kunde = Costumer(description)
+        val kunde = Customer(description)
         viewModelScope.launch(Dispatchers.IO) {
             repository.insert(kunde)
         }
     }
 
     fun onListItemClicked(view: View, costumerId : Int){
-        val action = CostumerOverviewFragmentDirections.actionCostumerOverviewFragmentToCostumerDetailFragment(costumerId)
+        val action = CustomerOverviewFragmentDirections.actionCostumerOverviewFragmentToCostumerDetailFragment(costumerId)
         isDialogVisible.value = false
         view.findNavController().navigate(action)
     }

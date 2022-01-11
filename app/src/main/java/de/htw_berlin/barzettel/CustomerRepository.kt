@@ -2,16 +2,13 @@ package de.htw_berlin.barzettel
 
 import android.content.Context
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
 import java.text.SimpleDateFormat
 import java.util.*
 
-class CostumerRepository(val context: Context) {
-    val dao: CostumerDao
+class CustomerRepository(val context: Context) {
+    val dao: CustomerDao
     private val sdf: SimpleDateFormat = SimpleDateFormat("MM/dd/yyyy")
-    val allKundenToday : Flow<List<Costumer>>
+    val allKundenToday : Flow<List<Customer>>
 
     init {
         val db = AppDatabase.getDatabase(context)
@@ -19,11 +16,11 @@ class CostumerRepository(val context: Context) {
         allKundenToday = dao.getAllToday(getDate())
     }
 
-    suspend fun insert(costumer: Costumer) {
-        dao.insertAll(costumer)
+    suspend fun insert(customer: Customer) {
+        dao.insertAll(customer)
     }
 
-    suspend fun getCostumer(id: Int) : Costumer{
+    suspend fun getCostumer(id: Int) : Customer{
         return dao.getCostumer(id)
     }
 
@@ -38,8 +35,8 @@ class CostumerRepository(val context: Context) {
         return res
     }
 
-    suspend fun updateCostumer(costumer: Costumer){
-        dao.update(costumer)
+    suspend fun updateCostumer(customer: Customer){
+        dao.update(customer)
     }
 
     private fun getDate() : String{

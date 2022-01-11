@@ -6,7 +6,7 @@
     <data>
         <variable
             name="kunde"
-            type="de.htw_berlin.barzettel.Costumer" />
+            type="de.htw_berlin.barzettel.Customer" />
     </data>
 
 

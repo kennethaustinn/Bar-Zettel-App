@@ -9,10 +9,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Costumer::class), version = 1)
+@Database(entities = arrayOf(Customer::class), version = 1)
 @TypeConverters(ConverterDatabase::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun kundenDao(): CostumerDao
+    abstract fun kundenDao(): CustomerDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the

@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import de.htw_berlin.barzettel.databinding.FragmentCostumerDetailBinding
 
 
-class CostumerDetailFragment : Fragment() {
+class CustomerDetailFragment : Fragment() {
 
     internal lateinit var binding: FragmentCostumerDetailBinding
-    internal lateinit var viewModelFactory: CostumerDetailViewModelFactory
-    internal lateinit var viewModel : CostumerDetailViewModel
+    internal lateinit var viewModelFactory: CustomerDetailViewModelFactory
+    internal lateinit var viewModel : CustomerDetailViewModel
     internal lateinit var adapter: ArticleListAdapter
 
     override fun onCreateView(
@@ -24,14 +24,14 @@ class CostumerDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_costumer_detail, container, false)
-        viewModelFactory = CostumerDetailViewModelFactory(requireContext(), CostumerDetailFragmentArgs.fromBundle(requireArguments()).costumerId)
-        viewModel = ViewModelProvider(this, viewModelFactory).get(CostumerDetailViewModel::class.java)
+        viewModelFactory = CustomerDetailViewModelFactory(requireContext(), CustomerDetailFragmentArgs.fromBundle(requireArguments()).costumerId)
+        viewModel = ViewModelProvider(this, viewModelFactory).get(CustomerDetailViewModel::class.java)
 
         binding.costumerDetailViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
 
         adapter = ArticleListAdapter(viewModel::onMinus, viewModel::onPlus, viewModel.costumer())
-        adapter.submitList(CostumerDetailViewModel.articles)
+        adapter.submitList(CustomerDetailViewModel.articles)
         binding.costumerListView.adapter = adapter
         binding.costumerListView.layoutManager = LinearLayoutManager(context)
 

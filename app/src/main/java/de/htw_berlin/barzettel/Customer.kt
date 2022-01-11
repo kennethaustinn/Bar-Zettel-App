@@ -5,7 +5,7 @@ import java.util.*
 
 
 @Entity
-data class Costumer(var name : String){
+data class Customer(var name : String){
     @PrimaryKey(autoGenerate = true) var id : Int = 0
     var price : Int = 0
     var date: Calendar

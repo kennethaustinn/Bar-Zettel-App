@@ -8,14 +8,14 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import de.htw_berlin.barzettel.databinding.RowCostumerDetailBinding
 
-class ArticleListAdapter(val onMinus: (Int) -> Unit, val onPlus: (Int) -> Unit, val costumer: LiveData<Costumer>):
+class ArticleListAdapter(val onMinus: (Int) -> Unit, val onPlus: (Int) -> Unit, val customer: LiveData<Customer>):
     ListAdapter<Article, ArticleListAdapter.ViewHolder>(ArticleComparator()){
 
     class ViewHolder private constructor(val binding: RowCostumerDetailBinding) : RecyclerView.ViewHolder(binding.root){
 
-        fun bind(item: Article, costumer: LiveData<Costumer>) {
+        fun bind(item: Article, customer: LiveData<Customer>) {
             binding.article = item
-            binding.costumer = costumer
+            binding.costumer = customer
         }
 
         companion object {
@@ -33,7 +33,7 @@ class ArticleListAdapter(val onMinus: (Int) -> Unit, val onPlus: (Int) -> Unit, 
 
     override fun onBindViewHolder(holder: ArticleListAdapter.ViewHolder, position: Int) {
         val article = getItem(position)
-        holder.bind(article, costumer)
+        holder.bind(article, customer)
         holder.binding.plus.setOnClickListener {
             onPlus(article.id)
             holder.binding.invalidateAll()

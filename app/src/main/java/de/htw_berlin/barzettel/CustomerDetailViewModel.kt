@@ -6,12 +6,12 @@ import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
 
-class CostumerDetailViewModel(private val context: Context, val costumerId : Int) : ViewModel() {
-    val repository: CostumerRepository
-    private var costumer: Costumer
-    private val _liveCostumer: MutableLiveData<Costumer> = MutableLiveData()
-    fun costumer(): LiveData<Costumer>{
-        return _liveCostumer
+class CustomerDetailViewModel(private val context: Context, val costumerId : Int) : ViewModel() {
+    val repository: CustomerRepository
+    private var customer: Customer
+    private val _liveCustomer: MutableLiveData<Customer> = MutableLiveData()
+    fun costumer(): LiveData<Customer>{
+        return _liveCustomer
     }
 
     companion object {
@@ -27,62 +27,62 @@ class CostumerDetailViewModel(private val context: Context, val costumerId : Int
     }
 
     init {
-        repository = CostumerRepository(context)
+        repository = CustomerRepository(context)
         runBlocking {
             val deferred = async(Dispatchers.IO) { repository.getCostumer(costumerId) }
-            costumer = deferred.await()
-            _liveCostumer.value = costumer
+            customer = deferred.await()
+            _liveCustomer.value = customer
         }
     }
 
 
     fun onPlus(artikelId : Int){
         var newCount = 0
-        val count = costumer.artikel[artikelId]
+        val count = customer.artikel[artikelId]
         if(count == null){
-            costumer.artikel[artikelId] = 1
+            customer.artikel[artikelId] = 1
         }
         else{
-            costumer.artikel[artikelId] = count + 1
+            customer.artikel[artikelId] = count + 1
         }
         calculateTotalPrice()
-        _liveCostumer.value = costumer
+        _liveCustomer.value = customer
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateCostumer(costumer)
+            repository.updateCostumer(customer)
         }
     }
 
     fun onMinus(artikelId: Int){
-        val count = costumer.artikel[artikelId]
+        val count = customer.artikel[artikelId]
         if (count == null || count == 0){
             return
         }
         val newCount = count - 1
-        costumer.artikel[artikelId] = newCount
+        customer.artikel[artikelId] = newCount
         if (newCount == 0){
-            costumer.artikel.remove(artikelId)
+            customer.artikel.remove(artikelId)
         }
         calculateTotalPrice()
-        _liveCostumer.value = costumer
+        _liveCustomer.value = customer
         viewModelScope.launch(Dispatchers.IO) {
-            repository.updateCostumer(costumer)
+            repository.updateCostumer(customer)
         }
     }
 
     private fun calculateTotalPrice(){
         var totalPrice: Int = 0
-        costumer.artikel.forEach { i, i2 ->
+        customer.artikel.forEach { i, i2 ->
             val artikel = articles.find { it.id == i }
             if (artikel != null){
                 totalPrice = totalPrice + (artikel.price * i2)
             }
         }
-        costumer.price = totalPrice
+        customer.price = totalPrice
     }
 
     fun createTextRechnung() : String{
         var res = ""
-        costumer.artikel.forEach { id, quantity ->
+        customer.artikel.forEach { id, quantity ->
             val artikel = articles.find { it.id==id }
             if (artikel != null){
                 val dprice = (artikel.price * quantity)/100.0

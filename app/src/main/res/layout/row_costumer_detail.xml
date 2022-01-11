@@ -2,13 +2,13 @@
 <layout>
     <data>
         <import type="androidx.lifecycle.LiveData"/>
-        <import type="de.htw_berlin.barzettel.Costumer"/>
+        <import type="de.htw_berlin.barzettel.Customer"/>
         <variable
             name="article"
             type="de.htw_berlin.barzettel.Article" />
         <variable
             name="costumer"
-            type="LiveData&lt;Costumer&gt;" />
+            type="LiveData&lt;Customer&gt;" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

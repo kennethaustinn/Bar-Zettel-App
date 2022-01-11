@@ -9,13 +9,11 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.x5.template.Theme
 import kotlinx.coroutines.*
-import java.time.LocalDate
-import java.time.format.TextStyle
 import java.util.*
 
 class SalesOverviewViewModel(private val context: Context) : ViewModel(), DatePickerDialog.OnDateSetListener {
 
-    val repository: CostumerRepository
+    val repository: CustomerRepository
     private val _date : MutableLiveData<Calendar> = MutableLiveData()
     val date: LiveData<Calendar>
     get() = _date
@@ -25,7 +23,7 @@ class SalesOverviewViewModel(private val context: Context) : ViewModel(), DatePi
 
 
     init {
-        repository = CostumerRepository(context)
+        repository = CustomerRepository(context)
         _date.value = Calendar.getInstance()
         runBlocking {
             val deferred = async(Dispatchers.IO) { repository.getSalesOfMonth(_date.value!!) }

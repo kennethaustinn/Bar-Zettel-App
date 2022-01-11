@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/costumerOverviewFragment"
-        android:name="de.htw_berlin.barzettel.CostumerOverviewFragment"
+        android:name="de.htw_berlin.barzettel.CustomerOverviewFragment"
         android:label="CostumerOverviewFragment" >
         <action
             android:id="@+id/action_costumerOverviewFragment_to_costumerDetailFragment"
@@ -17,7 +17,7 @@
     </fragment>
     <fragment
         android:id="@+id/costumerDetailFragment"
-        android:name="de.htw_berlin.barzettel.CostumerDetailFragment"
+        android:name="de.htw_berlin.barzettel.CustomerDetailFragment"
         android:label="CostumerDetailFragment" >
         <argument
             android:name="costumerId"
