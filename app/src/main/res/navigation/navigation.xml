@@ -26,5 +26,5 @@
     <fragment
         android:id="@+id/salesOverviewFragment"
         android:name="de.htw_berlin.barzettel.SalesOverviewFragment"
-        android:label="Bar Zettel" />
+        android:label="Umsatzübersicht" />
 </navigation>
