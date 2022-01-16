@@ -19,12 +19,12 @@ class CustomerOverviewFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_costumer_overview, container, false)
         setHasOptionsMenu(true)
 
-        viewModelFactory = CustomerOverviewViewModelFactory(requireContext())
+        viewModelFactory = CustomerOverviewViewModelFactory(requireActivity().application)
         viewModel = ViewModelProvider(this, viewModelFactory).get(CustomerOverviewViewModel::class.java)
         binding.costumerOverviewViewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner

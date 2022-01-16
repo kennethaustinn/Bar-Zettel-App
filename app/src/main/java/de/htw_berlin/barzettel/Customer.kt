@@ -10,7 +10,7 @@ data class Customer(var name : String){
     var price : Int = 0
     var date: Calendar
     var isPayed: Boolean = false
-    var artikel: MutableMap<Int, Int> = mutableMapOf<Int, Int>()
+    var article: MutableMap<Int, Int> = mutableMapOf()
 
     init {
         val now = Calendar.getInstance()

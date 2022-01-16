@@ -11,7 +11,7 @@ class BillDialog(val viewModel: CustomerDetailViewModel) : DialogFragment() {
     var binding: DialogBillBinding? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val inflater = requireActivity().layoutInflater;
+        val inflater = requireActivity().layoutInflater
         val view = inflater.inflate(R.layout.dialog_bill, null)
         binding = DialogBillBinding.bind(view)
         binding?.viewModel = viewModel

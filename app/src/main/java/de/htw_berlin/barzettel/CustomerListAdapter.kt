@@ -16,7 +16,7 @@ class CustomerListAdapter(val onLongClick: (Int) -> Unit, val onClick: (View, In
     class ViewHolder private constructor(val binding: RowCostumerOverviewBinding) : RecyclerView.ViewHolder(binding.root){
 
         fun bind(item: Customer) {
-            binding.kunde = item
+            binding.customer = item
         }
 
         companion object {

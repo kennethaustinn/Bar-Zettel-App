@@ -13,22 +13,20 @@ import androidx.fragment.app.Fragment
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import de.htw_berlin.barzettel.databinding.FragmentCostumerOverviewBinding
 import de.htw_berlin.barzettel.databinding.FragmentSalesOverviewBinding
 
 class SalesOverviewFragment : Fragment() {
 
-    internal lateinit var binding: FragmentSalesOverviewBinding
-    internal lateinit var viewModel : SalesOverviewViewModel
-    internal lateinit var viewModelFactory: SalesOverviewViewModelFactory
+    private lateinit var binding: FragmentSalesOverviewBinding
+    private lateinit var viewModel : SalesOverviewViewModel
+    private lateinit var viewModelFactory: SalesOverviewViewModelFactory
     private lateinit var adapter: SalesMonthListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sales_overview, container, false)
         viewModelFactory = SalesOverviewViewModelFactory(requireContext())

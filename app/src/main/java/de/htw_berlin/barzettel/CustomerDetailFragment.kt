@@ -13,18 +13,18 @@ import de.htw_berlin.barzettel.databinding.FragmentCostumerDetailBinding
 
 class CustomerDetailFragment : Fragment() {
 
-    internal lateinit var binding: FragmentCostumerDetailBinding
-    internal lateinit var viewModelFactory: CustomerDetailViewModelFactory
-    internal lateinit var viewModel : CustomerDetailViewModel
-    internal lateinit var adapter: ArticleListAdapter
+    private lateinit var binding: FragmentCostumerDetailBinding
+    private lateinit var viewModelFactory: CustomerDetailViewModelFactory
+    private lateinit var viewModel : CustomerDetailViewModel
+    private lateinit var adapter: ArticleListAdapter
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         binding = DataBindingUtil.inflate(inflater, R.layout.fragment_costumer_detail, container, false)
-        viewModelFactory = CustomerDetailViewModelFactory(requireContext(), CustomerDetailFragmentArgs.fromBundle(requireArguments()).costumerId)
+        viewModelFactory = CustomerDetailViewModelFactory(requireActivity().application, CustomerDetailFragmentArgs.fromBundle(requireArguments()).costumerId)
         viewModel = ViewModelProvider(this, viewModelFactory).get(CustomerDetailViewModel::class.java)
 
         binding.costumerDetailViewModel = viewModel

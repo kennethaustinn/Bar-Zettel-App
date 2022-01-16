@@ -9,10 +9,10 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.launch
 
-@Database(entities = arrayOf(Customer::class), version = 1)
+@Database(entities = [Customer::class], version = 1)
 @TypeConverters(ConverterDatabase::class)
 abstract class AppDatabase : RoomDatabase() {
-    abstract fun kundenDao(): CustomerDao
+    abstract fun customerDao(): CustomerDao
 
     companion object {
         // Singleton prevents multiple instances of database opening at the
@@ -27,9 +27,9 @@ abstract class AppDatabase : RoomDatabase() {
                 val instance = Room.databaseBuilder(
                     context.applicationContext,
                     AppDatabase::class.java,
-                    "KundenDB"
+                    "CustomerDB"
                 )
-                    .addCallback(KundenDatabaseCallback())
+                    .addCallback(CustomerDatabaseCallback())
                     .build()
                 INSTANCE = instance
                 // return instance
@@ -37,13 +37,13 @@ abstract class AppDatabase : RoomDatabase() {
             }
         }
     }
-    private class KundenDatabaseCallback() : RoomDatabase.Callback() {
+    private class CustomerDatabaseCallback : RoomDatabase.Callback() {
 
         override fun onCreate(db: SupportSQLiteDatabase) {
             super.onCreate(db)
             INSTANCE?.let { database ->
                 MainScope().launch {
-                    val dao = database.kundenDao()
+                    val dao = database.customerDao()
                     dao.getAll()
                 }
             }

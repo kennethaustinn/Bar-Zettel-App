@@ -12,7 +12,7 @@ class AddNewCostumerDialog(val onOK: (String) -> (Unit)) : DialogFragment() {
     var binding: DialogAddNewCostumerBinding? = null
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val inflater = requireActivity().layoutInflater;
+        val inflater = requireActivity().layoutInflater
         val view = inflater.inflate(R.layout.dialog_add_new_costumer, null)
         binding = DialogAddNewCostumerBinding.bind(view)
         binding?.buttonOKDialogNewCostumer?.setOnClickListener {

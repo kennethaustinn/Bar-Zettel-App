@@ -23,7 +23,7 @@ class SalesOverviewViewModel(private val context: Context) : ViewModel(), DatePi
 
 
     init {
-        repository = CustomerRepository(context)
+        repository = CustomerRepository.getInstance(context)
         _date.value = Calendar.getInstance()
         runBlocking {
             val deferred = async(Dispatchers.IO) { repository.getSalesOfMonth(_date.value!!) }

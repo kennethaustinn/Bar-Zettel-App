@@ -8,8 +8,7 @@ import java.util.*
 
 class MonthYearPicker(private val selectedDate: Calendar, private val listener: DatePickerDialog.OnDateSetListener) : DialogFragment() {
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = DatePickerDialog(this.requireContext(), listener, selectedDate.get(Calendar.YEAR),
+        return  DatePickerDialog(this.requireContext(), listener, selectedDate.get(Calendar.YEAR),
             selectedDate.get(Calendar.MONTH), selectedDate.get(Calendar.DAY_OF_MONTH))
-        return dialog
     }
 }

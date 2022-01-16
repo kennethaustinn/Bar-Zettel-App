@@ -1,13 +1,13 @@
 package de.htw_berlin.barzettel
 
-import android.content.Context
+import android.app.Application
 import androidx.lifecycle.*
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import kotlinx.coroutines.*
 
-class CustomerDetailViewModel(private val context: Context, val costumerId : Int) : ViewModel() {
-    val repository: CustomerRepository
+class CustomerDetailViewModel(application: Application,private val costumerId : Int) : AndroidViewModel(application) {
+    private val repository = CustomerRepository.getInstance(application)
     private var customer: Customer
     private val _liveCustomer: MutableLiveData<Customer> = MutableLiveData()
     fun costumer(): LiveData<Customer>{
@@ -21,13 +21,12 @@ class CustomerDetailViewModel(private val context: Context, val costumerId : Int
         init {
             val file = "res/raw/price_list.json"
             val jsonText = this.javaClass.classLoader.getResourceAsStream(file).bufferedReader().readText()
-            articles = Gson().fromJson<List<Article>>(jsonText, object : TypeToken<List<Article>>() {}.type)
+            articles = Gson().fromJson(jsonText, object : TypeToken<List<Article>>() {}.type)
         }
 
     }
 
     init {
-        repository = CustomerRepository(context)
         runBlocking {
             val deferred = async(Dispatchers.IO) { repository.getCostumer(costumerId) }
             customer = deferred.await()
@@ -37,41 +36,44 @@ class CustomerDetailViewModel(private val context: Context, val costumerId : Int
 
 
     fun onPlus(artikelId : Int){
-        var newCount = 0
-        val count = customer.artikel[artikelId]
+        val count = customer.article[artikelId]
         if(count == null){
-            customer.artikel[artikelId] = 1
+            customer.article[artikelId] = 1
         }
         else{
-            customer.artikel[artikelId] = count + 1
+            customer.article[artikelId] = count + 1
         }
         calculateTotalPrice()
         _liveCustomer.value = customer
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateCostumer(customer)
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                repository.updateCostumer(customer)
+            }
         }
     }
 
     fun onMinus(artikelId: Int){
-        val count = customer.artikel[artikelId]
+        val count = customer.article[artikelId]
         if (count == null || count == 0){
             return
         }
         val newCount = count - 1
-        customer.artikel[artikelId] = newCount
+        customer.article[artikelId] = newCount
         if (newCount == 0){
-            customer.artikel.remove(artikelId)
+            customer.article.remove(artikelId)
         }
         calculateTotalPrice()
         _liveCustomer.value = customer
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.updateCostumer(customer)
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                repository.updateCostumer(customer)
+            }
         }
     }
 
     private fun calculateTotalPrice(){
-        var totalPrice: Int = 0
-        customer.artikel.forEach { i, i2 ->
+        var totalPrice = 0
+        customer.article.forEach { i, i2 ->
             val artikel = articles.find { it.id == i }
             if (artikel != null){
                 totalPrice = totalPrice + (artikel.price * i2)
@@ -82,7 +84,7 @@ class CustomerDetailViewModel(private val context: Context, val costumerId : Int
 
     fun createTextRechnung() : String{
         var res = ""
-        customer.artikel.forEach { id, quantity ->
+        customer.article.forEach { id, quantity ->
             val artikel = articles.find { it.id==id }
             if (artikel != null){
                 val dprice = (artikel.price * quantity)/100.0

@@ -5,7 +5,7 @@
 
     <data>
         <variable
-            name="kunde"
+            name="customer"
             type="de.htw_berlin.barzettel.Customer" />
     </data>
 
@@ -36,9 +36,9 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginBottom="16dp"
-                android:text="@{kunde.name}"
+                android:text="@{customer.name}"
                 android:textAlignment="textStart"
-                android:textColor="@{kunde.payed ? @android:color/holo_green_light : @android:color/holo_red_dark}"
+                android:textColor="@{customer.payed ? @android:color/holo_green_light : @android:color/holo_red_dark}"
                 android:textSize="34sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -56,13 +56,13 @@
                 android:textAlignment="textEnd"
                 android:textSize="34sp"
                 android:textStyle="bold"
-                android:textColor="@{kunde.payed ? @android:color/holo_green_light : @android:color/holo_red_dark}"
+                android:textColor="@{customer.payed ? @android:color/holo_green_light : @android:color/holo_red_dark}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintStart_toEndOf="@+id/listName"
                 app:layout_constraintTop_toTopOf="parent"
-                app:price="@{kunde}"/>
+                app:price="@{customer}"/>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

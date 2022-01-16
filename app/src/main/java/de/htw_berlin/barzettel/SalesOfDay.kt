@@ -16,13 +16,6 @@ data class SalesOfDay(
         return "item"
     }
 
-    fun getDateString() : String{
-        if (date.get(Calendar.DAY_OF_MONTH) < 10){
-            return "0" + date.get(Calendar.DAY_OF_MONTH).toString() + ". " + date.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.GERMANY) + " " + date.get(Calendar.YEAR)
-        }
-        return date.get(Calendar.DAY_OF_MONTH).toString() + ". " + date.getDisplayName(Calendar.MONTH, Calendar.LONG_FORMAT, Locale.GERMANY) + " " + date.get(Calendar.YEAR)
-    }
-
     fun getPrice() : String{
         val df = java.text.DecimalFormat("#0.00")
         val dprice = amount/100.0

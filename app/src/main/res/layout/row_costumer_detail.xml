@@ -66,7 +66,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:layout_weight="1"
-                        android:text="@{costumer.artikel.getOrDefault(article.id, 0).toString()}"
+                        android:text="@{costumer.article.getOrDefault(article.id, 0).toString()}"
                         android:textSize="24sp"
                         android:textStyle="bold" />
                 </LinearLayout>

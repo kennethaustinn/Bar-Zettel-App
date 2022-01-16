@@ -1,21 +1,21 @@
 package de.htw_berlin.barzettel
 
-import android.content.Context
+import android.app.Application
 import android.util.Log
 import android.view.View
 import androidx.lifecycle.*
 import androidx.navigation.findNavController
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
-class CustomerOverviewViewModel(private val context: Context) : ViewModel() {
+class CustomerOverviewViewModel(application: Application) : AndroidViewModel(application) {
 
-    val repository: CustomerRepository
+    private val repository = CustomerRepository.getInstance(application)
     val isDialogVisible = MutableLiveData<Boolean>()
     val kundenToday : LiveData<List<Customer>>
 
     init {
-        repository = CustomerRepository(context)
         kundenToday = repository.allKundenToday.asLiveData()
     }
 
@@ -30,8 +30,10 @@ class CustomerOverviewViewModel(private val context: Context) : ViewModel() {
 
     fun onOkDialogClicked(description : String){
         val kunde = Customer(description)
-        viewModelScope.launch(Dispatchers.IO) {
-            repository.insert(kunde)
+        viewModelScope.launch {
+            withContext(Dispatchers.IO){
+                repository.insert(kunde)
+            }
         }
     }
 
