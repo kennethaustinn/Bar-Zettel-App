@@ -1,47 +1,51 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:layout_marginLeft="8dp"
-    android:orientation="vertical">
-
-    <EditText
-        android:id="@+id/dialogNameCostumerNew"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Bezeichnung"
-        android:inputType="textPersonName"
-        android:textSize="24sp" />
-
-    <Space
-        android:layout_width="match_parent"
-        android:layout_height="16dp" />
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:layout_marginLeft="8dp"
+        android:orientation="vertical">
 
-        <Button
-            android:id="@+id/buttonCancelDialogNewCoustumer"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginRight="8dp"
-            android:layout_weight="4"
-            android:text="Abbrechen"
-            android:textSize="16sp" />
-
-        <Button
-            android:id="@+id/buttonOKDialogNewCostumer"
+        <EditText
+            android:id="@+id/dialogNameCostumerNew"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="8dp"
-            android:layout_marginRight="8dp"
-            android:layout_weight="1"
-            android:text="OK"
-            android:textSize="20sp" />
+            android:ems="10"
+            android:hint="Bezeichnung"
+            android:inputType="textPersonName"
+            android:textSize="24sp" />
+
+        <androidx.legacy.widget.Space
+            android:layout_width="match_parent"
+            android:layout_height="16dp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/buttonCancelDialogNewCoustumer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="left"
+                android:layout_marginRight="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_weight="0"
+                android:text="Abbrechen"
+                android:textSize="20sp" />
+
+            <Button
+                android:id="@+id/buttonOKDialogNewCostumer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_weight="0"
+                android:text="OK"
+                android:textSize="20sp" />
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
 </layout>
