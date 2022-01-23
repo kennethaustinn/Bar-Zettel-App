@@ -2,6 +2,7 @@ package de.htw_berlin.barzettel
 
 import androidx.room.ColumnInfo
 import com.x5.util.DataCapsule
+import java.text.SimpleDateFormat
 import java.util.*
 
 data class SalesOfDay(
@@ -14,6 +15,12 @@ data class SalesOfDay(
 
     override fun getExportPrefix(): String {
         return "item"
+    }
+
+    fun getDateString() : String {
+        val sdf = SimpleDateFormat("dd.MM.yyyy")
+        val a = sdf.format(date.time)
+        return a
     }
 
     fun getPrice() : String{

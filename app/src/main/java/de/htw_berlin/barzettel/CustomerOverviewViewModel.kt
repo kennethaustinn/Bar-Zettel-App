@@ -31,9 +31,9 @@ class CustomerOverviewViewModel(application: Application) : AndroidViewModel(app
     fun onOkDialogClicked(description : String){
         val kunde = Customer(description)
         viewModelScope.launch {
-            withContext(Dispatchers.IO){
+            
                 repository.insert(kunde)
-            }
+
         }
     }
 
